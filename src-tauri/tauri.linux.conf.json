@@ -2,6 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/nicegui/nicegui/main/.tauri/conf/tauri.conf.schema.json",
   "bundle": {
     "targets": ["deb"],
+    "category": "Network",
+    "shortDescription": "Overlay de chat para lives (YouTube, Twitch, Kick e mais)",
     "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png"]
   }
 }

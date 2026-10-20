@@ -27,7 +27,7 @@ do OBS.
 
    O `.deb` declara as dependências (`libwebkit2gtk-4.1-0`, `libgtk-3-0`,
    `libayatana-appindicator3-1`) — o apt resolve o resto. Depois procure
-   **Lovert Overlay** no menu.
+   **Lovert Overlay** no menu, na categoria **Internet**.
 
 As configurações ficam em `~/.local/share/com.lovertoverlay.app/`.
 
