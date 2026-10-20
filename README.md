@@ -80,6 +80,11 @@ src-tauri/tauri.linux.conf.json     # config Linux (deb) — mesclada automatica
 
 ## Notas
 
+- **Versões Tauri fixadas de propósito**: `@tauri-apps/api 2.11.0` e
+  `@tauri-apps/cli 2.11.2` batem com o crate `tauri 2.11.5` do `Cargo.lock`
+  (o projeto não tem lockfile de npm; o CLI do Tauri falha o build se os
+  minor divergirem). Para atualizar, suba os três juntos e regenere o
+  `Cargo.lock`.
 - O overlay nasce **click-through** (o mouse atravessa a janela); dá para
   alternar pelo botão na janela de comando.
 - Nenhuma linha do backend é específica de plataforma: o mesmo código roda no
