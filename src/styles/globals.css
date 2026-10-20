@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01' 1, 'cv01' 1, 'calt' 1;
+  text-rendering: optimizeLegibility;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: transparent;
+  overflow: hidden;
+  border: none;
+  outline: none;
+}
+
+#root { background: transparent; border: none; outline: none; }
+
+/* — Scrollbar invisível mas funcional — */
+.chat-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.chat-scroll::-webkit-scrollbar { display: none; }
+
+/* — Animações — */
+@keyframes messageIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); filter: blur(2px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.message-enter { animation: messageIn 240ms cubic-bezier(0.16,1,0.3,1) both; }
+
+@keyframes messageFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-6px); }
+}
+.message-expiring { animation: messageFadeOut 0.4s ease-in forwards; }
+
+@keyframes dotPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.92); }
+}
+.provider-dot-pulse { animation: dotPulse 1.8s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* — Super chat premium — */
+.super-chat {
+  background: linear-gradient(135deg, rgba(251,191,36,0.18) 0%, rgba(245,158,11,0.16) 100%) !important;
+  border: 1px solid rgba(251,191,36,0.35) !important;
+  box-shadow: 0 0 0 1px rgba(251,191,36,0.08), 0 4px 20px rgba(251,191,36,0.18), 0 1px 3px rgba(0,0,0,0.3) !important;
+}
+
+/* — Badges — */
+.badge-moderator {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  box-shadow: 0 1px 4px rgba(20,184,166,0.35);
+  letter-spacing: 0.04em;
+}
+.badge-owner {
+  background: linear-gradient(135deg, #92400e 0%, #f59e0b 100%);
+  box-shadow: 0 1px 4px rgba(245,158,11,0.35);
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════════
+   MESSAGE STYLES — Profissionais
+   ═══════════════════════════════════════════ */
+
+/* Shared base */
+.msg-card {
+  position: relative;
+  isolation: isolate;
+}
+
+/* DEFAULT — Clean card, blur sutil */
+.msg-default {
+  background: rgba(24,24,27,0.72);
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.25),
+    0 4px 16px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* MINIMAL — Linha editorial */
+.msg-minimal {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.055);
+  border-radius: 0;
+  padding: 9px 6px;
+}
+.msg-minimal + .msg-minimal { margin-top: 0 !important; }
+
+/* BUBBLE — iMessage-like, moderno */
+.msg-bubble {
+  background: rgba(59,130,246,0.13);
+  border: 1px solid rgba(59,130,246,0.18);
+  border-radius: 18px 18px 18px 5px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* PILL — cápsula compacta */
+.msg-pill {
+  background: linear-gradient(135deg, rgba(236,72,153,0.13), rgba(139,92,246,0.11));
+  border: 1px solid rgba(236,72,153,0.22);
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(236,72,153,0.10);
+}
+
+/* GLASS — vidro premium */
+.msg-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+  border: 1px solid rgba(255,255,255,0.13);
+  backdrop-filter: blur(20px) saturate(1.25);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.32),
+    0 1px 2px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 -1px 0 rgba(255,255,255,0.04);
+}
+
+/* NEON — ciano controlado */
+.msg-neon {
+  background: linear-gradient(180deg, rgba(6,182,212,0.09), rgba(6,182,212,0.04));
+  border: 1px solid rgba(6,182,212,0.38);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 1px rgba(6,182,212,0.08),
+    0 0 16px rgba(6,182,212,0.22),
+    0 4px 16px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+@keyframes neonBreath {
+  0%,100% { box-shadow: 0 0 0 1px rgba(6,182,212,0.08), 0 0 14px rgba(6,182,212,0.20), 0 4px 16px rgba(0,0,0,0.25); border-color: rgba(6,182,212,0.38); }
+  50% { box-shadow: 0 0 0 1px rgba(6,182,212,0.12), 0 0 22px rgba(6,182,212,0.34), 0 4px 16px rgba(0,0,0,0.25); border-color: rgba(6,182,212,0.55); }
+}
+.msg-neon { animation: neonBreath 3s ease-in-out infinite; }
+
+/* RETRO — terminal */
+.msg-retro {
+  background: rgba(0,0,0,0.88);
+  border: 1px solid rgba(34,197,94,0.35);
+  border-left: 3px solid rgba(34,197,94,0.9);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  box-shadow: 0 0 20px rgba(34,197,94,0.10), 0 4px 16px rgba(0,0,0,0.4);
+}
+.msg-retro .msg-author-retro {
+  color: #4ade80 !important;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px !important;
+}
+.msg-retro .msg-text-retro {
+  color: #86efac !important;
+  text-shadow: 0 0 10px rgba(34,197,94,0.45);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* GLOW — roxo premium */
+.msg-glow {
+  background: linear-gradient(180deg, rgba(139,92,246,0.13), rgba(139,92,246,0.06));
+  border: 1px solid rgba(139,92,246,0.30);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.06),
+    0 0 20px rgba(139,92,246,0.18),
+    0 4px 16px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* OUTLINE — minimal com borda */
+.msg-outline {
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+/* — Emoji handling — */
+.chat-message-text {
+  font-variant-emoji: emoji;
+  emoji-orientation: auto;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+.chat-message-text.emoji-only {
+  font-size: 1.55em !important;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+.chat-message-text.emoji-only-large {
+  font-size: 1.9em !important;
+  line-height: 1.25;
+}
+
+/* Ensure emojis render with color font */
+.chat-message-text, .chat-author-name {
+  font-family: 'Inter', ui-sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}
+
+/* — Provider dot — */
+.provider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(255,255,255,0.92);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
+}
+.provider-dot-lg {
+  width: 9px;
+  height: 9px;
+  border-width: 1.5px;
+}
+
+/* — Avatar ring — */
+.avatar-ring {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 2px 8px rgba(0,0,0,0.28);
+}
+
+/* — Author hash fallback avatar — */
+.avatar-fallback {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: white;
+  text-transform: uppercase;
+}

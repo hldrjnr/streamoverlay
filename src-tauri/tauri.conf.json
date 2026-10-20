@@ -1,0 +1,65 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicegui/nicegui/main/.tauri/conf/tauri.conf.schema.json",
+  "productName": "Lovert Overlay",
+  "version": "0.1.0",
+  "identifier": "com.lovertoverlay.app",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "settings",
+        "title": "Lovert Overlay",
+        "width": 420,
+        "height": 650,
+        "minWidth": 360,
+        "minHeight": 480,
+        "resizable": true,
+        "transparent": true,
+        "decorations": false,
+        "shadow": true,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "alwaysOnTop": false,
+        "visible": true,
+        "center": true
+      },
+      {
+        "label": "chat",
+        "title": "Lovert Overlay",
+        "width": 400,
+        "height": 600,
+        "minWidth": 200,
+        "minHeight": 150,
+        "resizable": true,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "visible": true,
+        "x": 100,
+        "y": 100
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.youtube.com https://youtube.com; img-src 'self' https://yt3.ggpht.com https://yt4.ggpht.com data:; script-src 'self' 'unsafe-inline'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
