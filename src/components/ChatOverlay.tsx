@@ -70,6 +70,7 @@ export function ChatOverlay() {
     <div className="w-full h-full flex flex-col" style={{ background: "transparent" }}>
       {settings.show_overlay_frame && (
         <div
+          data-tauri-drag-region
           className="titlebar h-8 w-full flex-shrink-0 cursor-grab active:cursor-grabbing flex items-center justify-center"
           style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
         >

@@ -66,6 +66,17 @@ base continua com `targets: "all"` para o Windows.
 
   (ou adicione a variável no atalho do menu).
 
+## Mover as janelas
+
+- **Janela de comando**: arraste pela **barra de título** (a faixa com o nome
+  "Lovert Overlay" e os botões —/□/×).
+- **Overlay de chat**: a "alça de arrasto" (a barrinha no topo do overlay,
+  ativada pelo toggle **Alça de arrasto**) arrasta a janela — segure e mova.
+  Com o **Click-through** ligado o mouse atravessa o overlay, então desligue-o
+  para arrastar e ligue de volta depois.
+- Atalho do XFCE: **Alt + arrastar** move qualquer janela (funciona também na
+  de comando, que não tem barra nativa).
+
 ## Estrutura
 
 ```
